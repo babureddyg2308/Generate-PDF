@@ -12,6 +12,10 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use('/api/pdf', pdfRoutes);
 
+app.get('/', (req, res) => {
+    res.send('Welcome to the PDF generation backend!');
+});
+
 app.get('/seedData', async (req, res) => {
     try {
         await seedDB();
