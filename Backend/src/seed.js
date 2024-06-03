@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
-const Pdf = require('./src/models/Pdf');
-const connectDB = require('./src/config/db');
+// const Pdf = require('./src/models/Pdf');
+const Pdf = require('../src/models/Pdf.js');
+
+const connectDB = require('./config/db.js');
 
 const seedData = [
     {
@@ -31,11 +33,15 @@ const seedData = [
 ];
 
 const seedDB = async () => {
-    await connectDB();
-    await Pdf.deleteMany({});
-    await Pdf.insertMany(seedData);
-    console.log('Data inserted');
-    mongoose.connection.close();
+    try {
+        await connectDB();
+        await Pdf.deleteMany({});
+        await Pdf.insertMany(seedData);
+        console.log('Data inserted');
+    } catch (err) {
+        console.error('Error seeding database:', err);
+    }
 };
 
+ module.exports = seedDB;
 seedDB().catch(err => console.error(err));
