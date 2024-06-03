@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-const Pdf = require('./models/Pdf');
-const connectDB = require('./config/db');
+const Pdf = require('./src/models/Pdf');
+const connectDB = require('./src/config/db');
 
 const seedData = [
     {
